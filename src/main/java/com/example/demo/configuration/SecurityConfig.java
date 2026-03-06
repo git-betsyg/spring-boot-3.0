@@ -62,6 +62,11 @@ public class SecurityConfig {
         // @formatter:off
         http
                 .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf((csrf) -> csrf.ignoringRequestMatchers("/token"))
